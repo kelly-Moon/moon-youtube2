@@ -1,7 +1,24 @@
 import React from "react";
+import { portfolioText } from "../../data/portfolio";
+import { Link } from "react-router-dom";
 
 const Portfolio = () => {
-  return <div>Portfolio</div>;
+  return (
+    <section id="portfolio">
+      <h2>🫣 나만의 포트폴리오 사이를 만들고 싶다면.</h2>
+      <div className="video__inner">
+        {portfolioText.map((video, key) => (
+          <div className="video" key={key}>
+            <div className="video__thumb play__icon">
+              <Link to={`/video/${video.videoId}`}>
+                <img src={video.img} alt={video.title} />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Portfolio;
