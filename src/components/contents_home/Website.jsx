@@ -3,9 +3,9 @@ import React from "react";
 import { websiteText } from "../../data/website";
 import { Link } from "react-router-dom";
 
-const Webd = () => {
+const Website = () => {
   return (
-    <section id="webd">
+    <section id="website">
       <h2>😮 웹디자인기능사 준비는 이걸로!</h2>
       <div className="video__inner">
         {websiteText.map((video, key) => (
@@ -22,4 +22,4 @@ const Webd = () => {
   );
 };
 
-export default Webd;
+export default Website;
