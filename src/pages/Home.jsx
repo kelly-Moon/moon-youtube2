@@ -15,6 +15,8 @@ import { websiteText } from "../data/website";
 import { gsapText } from "../data/gsap";
 import { portfolioText } from "../data/portfolio";
 import { youtubeText } from "../data/youtube";
+import { developerText } from "../data/developer";
+import { todayText } from "../data/today";
 
 const Home = () => {
   return (
@@ -22,8 +24,12 @@ const Home = () => {
       title="퍼니문 유튜브 채널"
       description="퍼니문의 유튜브에 오신것을 환영합니다."
     >
-      <Today />
-      <Developer />
+      <Today id="taday" videos={todayText} />
+      <Developer
+        id="developer"
+        title="🤡 추천 개발자들을 소개합니다"
+        videos={developerText}
+      />
       <VideoSlider
         id="webd"
         title="👽 웹디자인기능사 한번에 따자!"

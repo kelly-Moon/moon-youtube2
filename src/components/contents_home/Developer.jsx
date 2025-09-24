@@ -1,44 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { developerText } from "../../data/developer";
+
 import { Link } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-const Developer = () => {
+const Developer = ({ videos, title, id }) => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 400);
+  }, []);
+
+  const developerClass = loading ? "isLoading" : "isLoaded";
   return (
-    <section id="developer">
-      <h2>😪 추천 개발자를 소개합니다.</h2>
+    <section id="developer" className={developerClass}>
+      <h2>{title}</h2>
       <div className="developer__inner">
         <Swiper
+          slidesPerView={4}
+          spaceBetween={15}
           navigation={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           pagination={{ clickable: true }}
-          modules={[Navigation, Pagination]}
-          slidesPerView={8}
-          spaceBetween={20}
+          modules={[Autoplay, Navigation, Pagination]}
           breakpoints={{
-            100: {
-              slidesPerView: 6,
-              spaceBetween: 10,
+            640: {
+              slidesPerView: 5,
+              spaceBetween: 15,
             },
-            800: {
+            768: {
               slidesPerView: 6,
-              spaceBetween: 10,
+              spaceBetween: 15,
             },
-            1600: {
+            1024: {
+              slidesPerView: 7,
+              spaceBetween: 15,
+            },
+            1240: {
               slidesPerView: 8,
+              spaceBetween: 15,
+            },
+            1640: {
+              slidesPerView: 9,
+              spaceBetween: 20,
+            },
+            2000: {
+              slidesPerView: 10,
               spaceBetween: 20,
             },
           }}
           className="mySwiper"
         >
-          {developerText.map((developer, key) => (
+          {videos.map((developer, key) => (
             <SwiperSlide key={key}>
-              <div className="developer">
+              <div className={id}>
                 <div className="developer__img play__icon">
                   <Link to={`/channel/${developer.channelId}`}>
                     <img src={developer.img} alt={developer.name} />
