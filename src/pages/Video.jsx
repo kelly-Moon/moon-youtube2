@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { fetchFromAPI } from "../utils/api";
 
 import Main from "../components/section/Main";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 import { CiChat1 } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
@@ -20,6 +20,7 @@ const Video = () => {
         setVideoDetail(data.items[0]);
       }
     );
+    console.log(videoId);
   }, [videoId]);
 
   return (
@@ -31,13 +32,21 @@ const Video = () => {
         {videoDetail && (
           <div className="video__view">
             <div className="video__play">
-              <ReactPlayer
+              {/* <ReactPlayer
                 playing={true}
                 url={`https://www.youtube.com/watch?v=${videoId}`}
+                // url={`https://www.youtube.com/embed/${videoId}`}
                 width="100%"
                 height="100%"
                 style={{ position: "absolute", top: 0, left: 0 }}
-              />
+              /> */}
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={videoDetail.snippet.title}
+              ></iframe>
             </div>
             <div className="video__info">
               <h2 className="video__title">{videoDetail.snippet.title}</h2>
