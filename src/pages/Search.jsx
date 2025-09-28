@@ -19,7 +19,9 @@ const Search = () => {
   //searchId가 바뀌면(useParams로 URL에서 가져옴),
 
   const fetchVideos = (query, pageToken = "") => {
-    fetchFromAPI(`search?part=snippet&q=${query}&pageToken=${pageToken}`)
+    fetchFromAPI(
+      `search?part=snippet&type=video&q=${query}&pageToken=${pageToken}`
+    )
       .then((data) => {
         setNextPageToken(data.nextPageToken); // 다음 페이지 토큰 저장
         setVideos((prevVideo) => [...prevVideo, ...data.items]); // 기존 목록 뒤에 새 영상 이어 붙임,
